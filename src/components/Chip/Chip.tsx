@@ -1,4 +1,5 @@
 import React, { FC, CSSProperties } from 'react';
+import { ColorPicker, Theme } from '@nickbarnette/dashui';
 
 // Styles
 import cx from 'classnames';
@@ -10,7 +11,8 @@ export interface ChipProps {
 	tooltip?: string;
 	style?: CSSProperties;
 	name: string;
-	bg?: string;
+	color: string;
+	onChange: (color: string) => void;
 }
 
 export const Chip: FC<ChipProps> = (props) => {
@@ -18,9 +20,12 @@ export const Chip: FC<ChipProps> = (props) => {
 		<div
 			className={cx(cn.container, props.className)}
 			data-testid={props.testId}
-			style={{ ...props.style, '--chip-bg': props.bg }}
+			style={{ ...props.style }}
 		>
-			<div className={cn.chip}></div>
+			<ColorPicker
+				onChange={(val) => props.onChange(val)}
+				color={props.color}
+			/>
 			<p className={cn.name}>{props.name}</p>
 		</div>
 	);

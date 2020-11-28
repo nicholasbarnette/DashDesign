@@ -1,10 +1,10 @@
-import { Button, Input, Theme } from '@nickbarnette/dashui';
+import { Theme } from '@nickbarnette/dashui';
 
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 
 // Components
-import { Chip } from '../../../components/Chip';
 import { Text, Heading } from '@nickbarnette/dashui';
+import { Chip } from '../../../components/Chip';
 
 // Styles
 import cn from './PaletteContent.scss';
@@ -15,37 +15,10 @@ export interface PaletteContentProps {
 }
 
 export const PaletteContent: FC<PaletteContentProps> = (props) => {
-	const [primaryColor, setPrimaryColor] = useState(
-		props.theme.theme.background.navigation,
-	);
-
 	return (
 		<div className={cn.stylesContainer}>
 			<div className={cn.colorContainer}>
 				<p className={cn.groupTitle}>Base Colors</p>
-				<Input
-					value={primaryColor}
-					onChange={(value) => {
-						setPrimaryColor(value);
-					}}
-				/>
-				<Button
-					tooltip=""
-					onPress={() => {
-						props.updateTheme({
-							...props.theme,
-							theme: {
-								...props.theme.theme,
-								background: {
-									...props.theme.theme.background,
-									navigation: primaryColor,
-								},
-							},
-						});
-					}}
-				>
-					Update Color
-				</Button>
 				<div className={cn.chipContainer}>
 					{Object.keys(props.theme.theme.color).map((key) => {
 						if (
@@ -56,7 +29,19 @@ export const PaletteContent: FC<PaletteContentProps> = (props) => {
 								<Chip
 									key={key}
 									name={key}
-									bg={
+									onChange={(val) =>
+										props.updateTheme({
+											...props.theme,
+											theme: {
+												...props.theme.theme,
+												color: {
+													...props.theme.theme.color,
+													[key]: val,
+												},
+											},
+										})
+									}
+									color={
 										props.theme.theme.color[
 											key as keyof Theme['theme']['color']
 										]
@@ -75,7 +60,19 @@ export const PaletteContent: FC<PaletteContentProps> = (props) => {
 								<Chip
 									key={key}
 									name={key}
-									bg={
+									onChange={(val) =>
+										props.updateTheme({
+											...props.theme,
+											theme: {
+												...props.theme.theme,
+												color: {
+													...props.theme.theme.color,
+													[key]: val,
+												},
+											},
+										})
+									}
+									color={
 										props.theme.theme.color[
 											key as keyof Theme['theme']['color']
 										]
@@ -93,7 +90,19 @@ export const PaletteContent: FC<PaletteContentProps> = (props) => {
 							<Chip
 								key={key}
 								name={key}
-								bg={
+								onChange={(val) =>
+									props.updateTheme({
+										...props.theme,
+										theme: {
+											...props.theme.theme,
+											background: {
+												...props.theme.theme.background,
+												[key]: val,
+											},
+										},
+									})
+								}
+								color={
 									props.theme.theme.background[
 										key as keyof Theme['theme']['background']
 									]
@@ -110,7 +119,19 @@ export const PaletteContent: FC<PaletteContentProps> = (props) => {
 							<Chip
 								key={key}
 								name={key}
-								bg={
+								onChange={(val) =>
+									props.updateTheme({
+										...props.theme,
+										theme: {
+											...props.theme.theme,
+											text: {
+												...props.theme.theme.text,
+												[key]: val,
+											},
+										},
+									})
+								}
+								color={
 									props.theme.theme.text[
 										key as keyof Theme['theme']['text']
 									]
