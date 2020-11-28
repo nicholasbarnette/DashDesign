@@ -1,0 +1,21 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 1rem;
+}
+
+.chip {
+	height: 4rem;
+	width: 4rem;
+	border: 1px solid #ffffff;
+	margin-block-end: 1rem;
+	background-color: var(--chip-bg);
+	border: 1px solid var(--text-default);
+	border-radius: 0.125rem;
+}
+
+.name {
+	text-align: center;
+}

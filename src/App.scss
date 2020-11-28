@@ -1,0 +1,29 @@
+@import './assets/global';
+@import './assets/design.scss';
+
+* {
+	font-family: Rubik, sans-serif;
+}
+
+html {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	background: var(--color-ui-light);
+	color: var(--color-text);
+	height: 100%;
+	width: 100%;
+}
+
+[data-keyboard-focus='false'] *:focus {
+	outline-color: transparent;
+	outline-width: 1px;
+	outline-style: dotted;
+}
+
+:global(#root) {
+	height: 100%;
+	width: 100%;
+}
