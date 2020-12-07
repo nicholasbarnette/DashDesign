@@ -20,6 +20,7 @@ import {
 	BusyIndicator,
 	NavigationLink,
 	DefaultLightTheme,
+	DefaultDarkTheme,
 } from '@nickbarnette/dashui';
 
 // Styles
@@ -28,6 +29,9 @@ import './App.scss';
 const history = createBrowserHistory();
 
 const App: FC = () => {
+	useEffect(() => {
+		console.log(DefaultLightTheme);
+	}, [DefaultLightTheme]);
 	return (
 		<Provider store={store.store}>
 			<PersistGate
@@ -35,7 +39,8 @@ const App: FC = () => {
 				persistor={store.persistor}
 			>
 				<AppRoot
-					customTheme={DefaultLightTheme}
+					customLightTheme={DefaultLightTheme}
+					customDarkTheme={DefaultDarkTheme}
 					topNavigation={
 						<NavigationBar
 							center={

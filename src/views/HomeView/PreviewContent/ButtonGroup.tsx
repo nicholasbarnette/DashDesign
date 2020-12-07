@@ -1,8 +1,9 @@
+import { Button } from '@nickbarnette/dashui';
 import React, { FC } from 'react';
 
-export const ButtonGroup: FC<{ variant: 'neutral' | 'primary' | 'secondary' }> = (
-	props,
-) => {
+export const ButtonGroup: FC<{
+	variant: 'neutral' | 'primary' | 'secondary';
+}> = (props) => {
 	const buttonStyles = {
 		borderWidth: '1px',
 		borderStyle: 'solid',
@@ -18,42 +19,45 @@ export const ButtonGroup: FC<{ variant: 'neutral' | 'primary' | 'secondary' }> =
 				marginBlockEnd: '2rem',
 			}}
 		>
-			<button
+			<Button
+				onPress={() => {}}
+				tooltip={`${props.variant} button`}
 				style={{
-					...buttonStyles,
-					borderColor: `var(--${props.variant}-bd)`,
-					backgroundColor: `var(--${props.variant}-bg)`,
-					color: `var(--${props.variant}-fg)`,
+					borderColor: `var(--pattern-${props.variant}-normal-bd)`,
+					backgroundColor: `var(--pattern-${props.variant}-normal-bg)`,
+					color: `var(--pattern-${props.variant}-normal-fg)`,
 				}}
 			>
 				{props.variant.slice(0, 1).toUpperCase() +
 					props.variant.slice(1)}{' '}
 				Default
-			</button>
-			<button
+			</Button>
+			<Button
+				onPress={() => {}}
+				tooltip={`${props.variant} button hovered`}
 				style={{
-					...buttonStyles,
-					borderColor: `var(--${props.variant}-hover-bd)`,
-					backgroundColor: `var(--${props.variant}-hover-bg)`,
-					color: `var(--${props.variant}-hover-fg)`,
+					borderColor: `var(--pattern-${props.variant}-hover-bd)`,
+					backgroundColor: `var(--pattern-${props.variant}-hover-bg)`,
+					color: `var(--pattern-${props.variant}-hover-fg)`,
 				}}
 			>
 				{props.variant.slice(0, 1).toUpperCase() +
 					props.variant.slice(1)}{' '}
 				Hover
-			</button>
-			<button
+			</Button>
+			<Button
+				onPress={() => {}}
+				tooltip={`${props.variant} button pressed`}
 				style={{
-					...buttonStyles,
-					borderColor: `var(--${props.variant}-pressed-bd)`,
-					backgroundColor: `var(--${props.variant}-pressed-bg)`,
-					color: `var(--${props.variant}-pressed-fg)`,
+					borderColor: `var(--pattern-${props.variant}-pressed-bd)`,
+					backgroundColor: `var(--pattern-${props.variant}-pressed-bg)`,
+					color: `var(--pattern-${props.variant}-pressed-fg)`,
 				}}
 			>
 				{props.variant.slice(0, 1).toUpperCase() +
 					props.variant.slice(1)}{' '}
 				Pressed
-			</button>
+			</Button>
 		</div>
 	);
 };

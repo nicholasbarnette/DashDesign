@@ -3,9 +3,10 @@ import { AnyAction } from 'redux';
 
 // Actions
 export const UPDATE_THEME = 'UPDATE_THEME';
+export const RESET_THEME = 'RESET_THEME';
 
 export interface ThemeAction extends AnyAction {
-	type: typeof UPDATE_THEME;
+	type: typeof UPDATE_THEME | typeof RESET_THEME;
 	payload: Theme;
 }
 

@@ -1,4 +1,5 @@
 import {
+	RESET_THEME,
 	ThemeActionTypes,
 	ThemeState,
 	UPDATE_THEME,
@@ -13,6 +14,10 @@ export const ThemeReducer = (
 ): ThemeState => {
 	switch (action.type) {
 		case UPDATE_THEME:
+			return {
+				theme: { ...action.payload },
+			};
+		case RESET_THEME:
 			return {
 				theme: { ...action.payload },
 			};

@@ -86,11 +86,18 @@ export const PaletteContent: FC<PaletteContentProps> = (props) => {
 				<p className={cn.groupTitle}>UI Colors</p>
 				<div className={cn.chipContainer}>
 					{Object.keys(props.theme.theme.background).map((key) => {
+						if (
+							typeof props.theme.theme.background[
+								key as keyof Theme['theme']['background']
+							] === 'string'
+						) {
+							return;
+						}
 						return (
 							<Chip
 								key={key}
 								name={key}
-								onChange={(val) =>
+								onChange={(val) => {
 									props.updateTheme({
 										...props.theme,
 										theme: {
@@ -100,8 +107,8 @@ export const PaletteContent: FC<PaletteContentProps> = (props) => {
 												[key]: val,
 											},
 										},
-									})
-								}
+									});
+								}}
 								color={
 									props.theme.theme.background[
 										key as keyof Theme['theme']['background']

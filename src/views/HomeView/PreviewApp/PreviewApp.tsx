@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { BarChart, Typography, Components } from '../PreviewContent';
 import {
 	AppRoot,
@@ -17,9 +17,13 @@ export interface PreviewAppProps {
 }
 
 export const PreviewApp: FC<PreviewAppProps> = (props) => {
+	// useEffect(() => {
+	// 	console.log(props.theme);
+	// }, [props.theme]);
 	return (
 		<AppRoot
-			customTheme={props.theme}
+			customLightTheme={props.theme}
+			customDarkTheme={props.theme}
 			style={{ border: '2px solid var(--text-default)' }}
 			topNavigation={
 				<NavigationBar
@@ -63,6 +67,6 @@ export const PreviewApp: FC<PreviewAppProps> = (props) => {
 					]}
 				/>
 			}
-		></AppRoot>
+		/>
 	);
 };

@@ -20,19 +20,28 @@ export const IconGroup: FC<{}> = (props) => {
 				svg={Error404}
 				tooltip=""
 				style={{ ...iconStyles }}
-				color="var(--color-alert)"
+				customColor={{
+					default: 'var(--color-alert)',
+					inverse: 'var(--text-default)',
+				}}
 			/>
 			<SVG
 				svg={Profile}
 				tooltip=""
 				style={{ ...iconStyles }}
-				color="var(--color-warning)"
+				customColor={{
+					default: 'var(--color-warning)',
+					inverse: 'var(--text-default)',
+				}}
 			/>
 			<SVG
 				svg={Letter}
 				tooltip=""
 				style={{ ...iconStyles }}
-				color="var(--color-success)"
+				customColor={{
+					default: 'var(--color-success)',
+					inverse: 'var(--text-default)',
+				}}
 			/>
 		</div>
 	);
