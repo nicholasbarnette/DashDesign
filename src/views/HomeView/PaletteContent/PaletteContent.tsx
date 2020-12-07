@@ -1,9 +1,8 @@
-import { Theme } from '@nickbarnette/dashui';
-
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
+import PreviewAppContainer from '../PreviewApp';
 
 // Components
-import { Text, Heading } from '@nickbarnette/dashui';
+import { Text, Theme, Input, Label, Button } from '@nickbarnette/dashui';
 import { Chip } from '../../../components/Chip';
 
 // Styles
@@ -15,6 +14,9 @@ export interface PaletteContentProps {
 }
 
 export const PaletteContent: FC<PaletteContentProps> = (props) => {
+	const [fontSize, setFontSize] = useState(
+		`${props.theme.theme['font-size'].fontSizeBase}`,
+	);
 	return (
 		<div className={cn.stylesContainer}>
 			<div className={cn.colorContainer}>
@@ -46,6 +48,7 @@ export const PaletteContent: FC<PaletteContentProps> = (props) => {
 											key as keyof Theme['theme']['color']
 										]
 									}
+									style={{ flexGrow: 1 }}
 								/>
 							);
 						}
@@ -77,6 +80,7 @@ export const PaletteContent: FC<PaletteContentProps> = (props) => {
 											key as keyof Theme['theme']['color']
 										]
 									}
+									style={{ flexGrow: 1 }}
 								/>
 							);
 						}
@@ -114,6 +118,7 @@ export const PaletteContent: FC<PaletteContentProps> = (props) => {
 										key as keyof Theme['theme']['background']
 									]
 								}
+								style={{ flexGrow: 1 }}
 							/>
 						);
 					})}
@@ -143,58 +148,63 @@ export const PaletteContent: FC<PaletteContentProps> = (props) => {
 										key as keyof Theme['theme']['text']
 									]
 								}
+								style={{ flexGrow: 1 }}
 							/>
 						);
 					})}
 				</div>
+
+				<p className={cn.groupTitle}>Layout Sizes</p>
+				<div className={cn.layoutGroup}>
+					<Label id="font-size">Base Font Size:</Label>
+					<div
+						style={{
+							display: 'flex',
+							flexDirection: 'row',
+							alignItems: 'center',
+							marginBlockEnd: '2rem',
+						}}
+					>
+						<Input
+							id="font-size"
+							style={{ width: '100%', maxWidth: '4rem' }}
+							value={fontSize}
+							onChange={(val) => setFontSize(val)}
+						/>
+						<Text style={{ marginInlineStart: '0.5rem' }}>px</Text>
+						<Button
+							tooltip="Update font size"
+							style={{ marginInlineStart: '1rem' }}
+							onPress={() => {
+								const num = parseInt(fontSize, 10);
+								props.updateTheme({
+									...props.theme,
+									theme: {
+										...props.theme.theme,
+										'font-size': {
+											...props.theme.theme['font-size'],
+											fontSizeBase: num,
+										},
+									},
+								});
+							}}
+						>
+							Update
+						</Button>
+					</div>
+				</div>
 			</div>
-			<div className={cn.textContainer}>
-				<p className={cn.groupTitle}>Font Sizes</p>
-				<div className={cn.fontSizeContainer}>
-					<Text style={{ fontSize: 'var(--font-size-xxl)' }}>
-						Sample text (xxl)
-					</Text>
-					<Text style={{ fontSize: 'var(--font-size-xl)' }}>
-						Sample text (xl)
-					</Text>
-					<Text style={{ fontSize: 'var(--font-size-lg)' }}>
-						Sample text (lg)
-					</Text>
-					<Text>Sample text (md)</Text>
-					<Text style={{ fontSize: 'var(--font-size-sm)' }}>
-						Sample text (sm)
-					</Text>
-					<Text style={{ fontSize: 'var(--font-size-xs)' }}>
-						Sample text (xs)
-					</Text>
-					<Text style={{ fontSize: 'var(--font-size-xxs)' }}>
-						Sample text (xxs)
-					</Text>
-				</div>
-
-				<p className={cn.groupTitle}>Headings</p>
-				<div className={cn.headingContainer}>
-					<Heading level={1}>Heading 1</Heading>
-					<Heading level={3}>Heading 3</Heading>
-					<Heading level={5}>Heading 5</Heading>
-				</div>
-
-				<p className={cn.groupTitle}>Body Text</p>
-				<div className={cn.bodyContainer}>
-					<Text>
-						Lorem Ipsum is simply dummy text of the printing and
-						typesetting industry. Lorem Ipsum has been the
-						industry's standard dummy text ever since the 1500s,
-						when an unknown printer took a galley of type and
-						scrambled it to make a type specimen book. It has
-						survived not only five centuries, but also the leap into
-						electronic typesetting, remaining essentially unchanged.
-						It was popularised in the 1960s with the release of
-						Letraset sheets containing Lorem Ipsum passages, and
-						more recently with desktop publishing software like
-						Aldus PageMaker including versions of Lorem Ipsum.
-					</Text>
-				</div>
+			<div
+				style={{
+					flexGrow: 1,
+					flexBasis: '70%',
+					overflow: 'hidden',
+					minWidth: '10rem',
+					maxHeight: '100%',
+					paddingInlineStart: '2rem',
+				}}
+			>
+				<PreviewAppContainer />
 			</div>
 		</div>
 	);

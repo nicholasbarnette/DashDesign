@@ -1,5 +1,5 @@
-import React, { FC, useEffect } from 'react';
-import { BarChart, Typography, Components } from '../PreviewContent';
+import React, { CSSProperties, FC } from 'react';
+import { Typography, Components, Graphs } from '../PreviewContent';
 import {
 	AppRoot,
 	Home,
@@ -14,17 +14,15 @@ import {
 export interface PreviewAppProps {
 	theme: Theme;
 	updateTheme: (theme: Theme) => void;
+	style?: CSSProperties;
 }
 
 export const PreviewApp: FC<PreviewAppProps> = (props) => {
-	// useEffect(() => {
-	// 	console.log(props.theme);
-	// }, [props.theme]);
 	return (
 		<AppRoot
 			customLightTheme={props.theme}
 			customDarkTheme={props.theme}
-			style={{ border: '2px solid var(--text-default)' }}
+			style={{ border: '2px solid var(--text-default)', ...props.style }}
 			topNavigation={
 				<NavigationBar
 					left={
@@ -57,7 +55,7 @@ export const PreviewApp: FC<PreviewAppProps> = (props) => {
 						{
 							svg: Profile,
 							text: 'Graphs',
-							content: <BarChart />,
+							content: <Graphs />,
 						},
 						{
 							svg: Profile,

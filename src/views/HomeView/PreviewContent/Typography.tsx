@@ -6,7 +6,14 @@ import { Heading, Label, Text } from '@nickbarnette/dashui';
 export const Typography: FC = () => {
 	return (
 		<div
-			style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'row' }}
+			style={{
+				flex: '1 1 auto',
+				display: 'flex',
+				flexDirection: 'row',
+				flexWrap: 'wrap',
+				height: '100%',
+				width: '100%',
+			}}
 		>
 			<div style={{ flex: '1 1 auto' }}>
 				<Heading level={1}>Heading 1</Heading>

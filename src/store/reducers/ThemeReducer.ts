@@ -17,6 +17,7 @@ export const ThemeReducer = (
 			return {
 				theme: { ...action.payload },
 			};
+		// return InitialThemeState;
 		case RESET_THEME:
 			return {
 				theme: { ...action.payload },

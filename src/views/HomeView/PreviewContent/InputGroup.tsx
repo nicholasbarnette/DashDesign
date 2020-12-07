@@ -9,6 +9,7 @@ export const InputGroup: FC = () => {
 				gridTemplateColumns: '1fr',
 				columnGap: '2rem',
 				rowGap: '2rem',
+				marginBlockEnd: '2rem',
 			}}
 		>
 			<Input value="" placeholder="Placeholder" />

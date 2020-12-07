@@ -3,15 +3,16 @@ import { SVG, Twitter, Error404, Profile, Letter } from '@nickbarnette/dashui';
 
 export const IconGroup: FC<{}> = (props) => {
 	const iconStyles = {
-		height: '3rem',
-		width: '3rem',
+		height: 'var(--font-size-xxl)',
+		width: 'var(--font-size-xxl)',
 	};
 	return (
 		<div
 			style={{
 				display: 'grid',
-				gridTemplateColumns: '1fr 1fr 1fr',
+				gridTemplateColumns: 'repeat(auto-fill, 3rem)',
 				columnGap: '2rem',
+				rowGap: '1rem',
 				marginBlockEnd: '2rem',
 			}}
 		>

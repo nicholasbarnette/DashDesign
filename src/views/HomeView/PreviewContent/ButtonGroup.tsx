@@ -4,18 +4,13 @@ import React, { FC } from 'react';
 export const ButtonGroup: FC<{
 	variant: 'neutral' | 'primary' | 'secondary';
 }> = (props) => {
-	const buttonStyles = {
-		borderWidth: '1px',
-		borderStyle: 'solid',
-		borderRadius: '0.125rem',
-		padding: '0.5rem 1rem',
-	};
 	return (
 		<div
 			style={{
 				display: 'grid',
-				gridTemplateColumns: '1fr 1fr 1fr',
+				gridTemplateColumns: 'repeat(auto-fill, minmax(1rem, 20rem))',
 				columnGap: '2rem',
+				rowGap: '1rem',
 				marginBlockEnd: '2rem',
 			}}
 		>
