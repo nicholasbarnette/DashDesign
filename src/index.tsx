@@ -25,41 +25,31 @@ import './app.scss';
 
 const App: FC = () => {
 	return (
-		<AppRoot
-			customLightTheme={DefaultLightTheme}
-			customDarkTheme={DefaultDarkTheme}
-			topNavigation={
-				<NavigationBar
-					center={
-						<NavigationLink link="/">Dash Design</NavigationLink>
+		<Provider store={store.store}>
+			<PersistGate
+				loading={<BusyIndicator />}
+				persistor={store.persistor}
+			>
+				{/* <AppRoot
+					customLightTheme={DefaultLightTheme}
+					customDarkTheme={DefaultDarkTheme}
+					topNavigation={
+						<NavigationBar
+							center={
+								<NavigationLink link="/">
+									Dash Design
+								</NavigationLink>
+							}
+						/>
 					}
-				/>
-			}
-		>
-			<HomeView />
-		</AppRoot>
-		// <Provider store={store.store}>
-		// 	<PersistGate
-		// 		loading={<BusyIndicator />}
-		// 		persistor={store.persistor}
-		// 	>
-		// 		<AppRoot
-		// 			customLightTheme={DefaultLightTheme}
-		// 			customDarkTheme={DefaultDarkTheme}
-		// 			topNavigation={
-		// 				<NavigationBar
-		// 					center={
-		// 						<NavigationLink link="/">
-		// 							Dash Design
-		// 						</NavigationLink>
-		// 					}
-		// 				/>
-		// 			}
-		// 		>
-		// 			<HomeView />
-		// 		</AppRoot>
-		// 	</PersistGate>
-		// </Provider>
+				>
+					<HomeView />
+				</AppRoot> */}
+				<div>
+					<span>testing</span>
+				</div>
+			</PersistGate>
+		</Provider>
 	);
 };
 
