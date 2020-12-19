@@ -1,7 +1,5 @@
-import React, { lazy, Suspense, FC } from 'react';
+import React, { lazy, FC } from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, Switch } from 'react-router';
-import { createBrowserHistory } from 'history';
 
 // App state
 import { Provider } from 'react-redux';
@@ -11,7 +9,6 @@ const store = storeConfig();
 
 // Views
 const HomeView = lazy(() => import('./views/HomeView'));
-const ErrorView = lazy(() => import('./views/ErrorView'));
 
 // Components
 import {
@@ -25,8 +22,6 @@ import {
 
 // Styles
 import './app.scss';
-
-const history = createBrowserHistory();
 
 const App: FC = () => {
 	return (
@@ -48,18 +43,7 @@ const App: FC = () => {
 						/>
 					}
 				>
-					<Router history={history}>
-						<Suspense fallback={<BusyIndicator />}>
-							<Switch>
-								<Route exact path="/">
-									<HomeView />
-								</Route>
-								<Route>
-									<ErrorView />
-								</Route>
-							</Switch>
-						</Suspense>
-					</Router>
+					<HomeView />
 				</AppRoot>
 			</PersistGate>
 		</Provider>
