@@ -24,7 +24,6 @@ import {
 import './app.scss';
 
 const App: FC = () => {
-	console.log(store.store.getState());
 	return (
 		<Provider store={store.store}>
 			<PersistGate
