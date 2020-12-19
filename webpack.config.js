@@ -24,8 +24,8 @@ const babelLoader = {
 };
 
 module.exports = {
-	entry: './src/App',
-	mode: 'production',
+    entry: './src/index',
+    mode: 'production',
 	output: {
 		path: path.join(__dirname, '/dist'),
 		filename: '[name].js',
@@ -45,31 +45,43 @@ module.exports = {
 						loader: 'ts-loader',
 					},
 				],
+            },
+            {
+                test: /\.s?css$/,
+                use: [
+                    { loader: 'style-loader' },
+                    { loader: 'css-loader', options: { modules: false, sourceMap: true } },
+                    { loader: 'sass-loader', options: { sourceMap: true } },
+                ],
 			},
 			{
-				test: /\.s?css$/,
+				test: /\.(png|jpe?g|gif)$/i,
 				use: [
-					MiniCssExtractPlugin.loader,
-					{ loader: 'css-loader', options: { modules: true } },
-					{ loader: 'sass-loader' },
+				  {
+					loader: 'file-loader',
+				  },
 				],
-			}
+			  },
 		],
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: './src/App.html',
-			favicon: './src/assets/favicon.ico',
-		}),
+			template: './src/index.html',
+			favicon: './src/assets/img/favicon.ico',
+        }),
+        new MiniCssExtractPlugin({
+            filename: '[name].[hash].css',
+        }),
 		new CopyWebpackPlugin({
 			patterns: [
 				{ from: './src/assets/img', to: './assets/img' },
 			],
 		}),
-		new MiniCssExtractPlugin({
-            filename: '[name].[hash].css',
-        }),
 	],
+	performance: {
+		maxEntrypointSize: 400000,
+		maxAssetSize: 700000
+	},
 	devServer: {
 		historyApiFallback: true,
 	},
