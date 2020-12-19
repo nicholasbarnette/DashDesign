@@ -25,12 +25,13 @@ const babelLoader = {
 
 module.exports = {
     entry: './src/index',
-    mode: 'production',
 	output: {
+		library: 'index',
+		libraryTarget: 'umd',
 		path: path.join(__dirname, '/dist'),
-		filename: '[name].js',
-		chunkFilename: '[chunkhash].bundle.js',
+		filename: 'index.js',
 	},
+    mode: 'production',
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js'],
 	},
@@ -79,7 +80,7 @@ module.exports = {
 		}),
 	],
 	performance: {
-		maxEntrypointSize: 400000,
+		maxEntrypointSize: 700000,
 		maxAssetSize: 700000
 	},
 	devServer: {
