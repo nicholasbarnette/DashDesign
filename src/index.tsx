@@ -31,10 +31,7 @@ const App: FC = () => {
 				loading={<BusyIndicator />}
 				persistor={store.persistor}
 			>
-				<div>
-					<span>testing2</span>
-				</div>
-				{/* <AppRoot
+				<AppRoot
 					customLightTheme={DefaultLightTheme}
 					customDarkTheme={DefaultDarkTheme}
 					topNavigation={
@@ -47,8 +44,11 @@ const App: FC = () => {
 						/>
 					}
 				>
-					<HomeView />
-				</AppRoot> */}
+					{/* <HomeView /> */}
+					<div>
+						<span>testing2</span>
+					</div>
+				</AppRoot>
 			</PersistGate>
 		</Provider>
 	);
