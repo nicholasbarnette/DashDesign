@@ -24,14 +24,13 @@ const babelLoader = {
 };
 
 module.exports = {
-    entry: './src/index',
+	entry: './src/index',
+	mode: 'production',
 	output: {
-		library: 'index',
-		libraryTarget: 'umd',
 		path: path.join(__dirname, '/dist'),
-		filename: 'index.js',
+		filename: '[name].js',
+		chunkFilename: '[chunkhash].bundle.js',
 	},
-    mode: 'production',
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js'],
 	},
@@ -46,42 +45,34 @@ module.exports = {
 						loader: 'ts-loader',
 					},
 				],
-            },
-            {
+			},
+			{
                 test: /\.s?css$/,
                 use: [
                     { loader: 'style-loader' },
                     { loader: 'css-loader', options: { modules: false, sourceMap: true } },
                     { loader: 'sass-loader', options: { sourceMap: true } },
                 ],
-			},
-			{
-				test: /\.(png|jpe?g|gif)$/i,
-				use: [
-				  {
-					loader: 'file-loader',
-				  },
-				],
-			  },
+            }
 		],
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: './src/index.html',
 			favicon: './src/assets/img/favicon.ico',
-        }),
-        new MiniCssExtractPlugin({
-            filename: '[name].[hash].css',
-        }),
+		}),
 		new CopyWebpackPlugin({
 			patterns: [
 				{ from: './src/assets/img', to: './assets/img' },
 			],
 		}),
+		new MiniCssExtractPlugin({
+			filename: '[name].[hash].css',
+		}),
 	],
 	performance: {
-		maxEntrypointSize: 700000,
-		maxAssetSize: 700000
+		maxEntrypointSize: 500000,
+		maxAssetSize: 500000
 	},
 	devServer: {
 		historyApiFallback: true,

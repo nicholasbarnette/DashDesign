@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, FC, useState, useEffect } from 'react';
+import React, { lazy, Suspense, FC } from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, Switch } from 'react-router';
 import { createBrowserHistory } from 'history';
@@ -24,7 +24,7 @@ import {
 } from '@nickbarnette/dashui';
 
 // Styles
-import './index.scss';
+import './app.scss';
 
 const history = createBrowserHistory();
 
