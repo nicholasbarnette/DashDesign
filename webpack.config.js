@@ -26,10 +26,9 @@ const babelLoader = {
 module.exports = {
 	entry: './src/App',
 	mode: 'production',
-	devtool: false,
 	output: {
 		path: path.join(__dirname, '/dist'),
-		filename: '[name].[hash].js',
+		filename: '[name].js',
 		chunkFilename: '[chunkhash].bundle.js',
 	},
 	resolve: {
@@ -68,9 +67,8 @@ module.exports = {
 			],
 		}),
 		new MiniCssExtractPlugin({
-			filename: '[name].[hash].css',
-			chunkFilename: '[chunkhash].bundle.css',
-		}),
+            filename: '[name].[hash].css',
+        }),
 	],
 	devServer: {
 		historyApiFallback: true,
