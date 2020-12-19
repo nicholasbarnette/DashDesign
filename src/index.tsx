@@ -24,7 +24,7 @@ import {
 } from '@nickbarnette/dashui';
 
 // Styles
-import './App.scss';
+import './index.scss';
 
 const history = createBrowserHistory();
 
