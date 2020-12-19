@@ -1,4 +1,4 @@
-import React, { lazy, FC } from 'react';
+import React, { lazy, FC, Suspense } from 'react';
 import ReactDOM from 'react-dom';
 
 // App state
@@ -44,10 +44,9 @@ const App: FC = () => {
 						/>
 					}
 				>
-					{/* <HomeView /> */}
-					<div>
-						<span>testing2</span>
-					</div>
+					<Suspense fallback={<BusyIndicator />}>
+						<HomeView />
+					</Suspense>
 				</AppRoot>
 			</PersistGate>
 		</Provider>
