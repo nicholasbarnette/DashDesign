@@ -32,7 +32,7 @@ const App: FC = () => {
 				persistor={store.persistor}
 			>
 				<div>
-					<span>testing</span>
+					<span>testing2</span>
 				</div>
 				{/* <AppRoot
 					customLightTheme={DefaultLightTheme}
