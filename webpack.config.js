@@ -49,9 +49,9 @@ module.exports = {
 			{
                 test: /\.s?css$/,
                 use: [
-                    { loader: 'style-loader' },
-                    { loader: 'css-loader', options: { modules: false, sourceMap: true } },
-                    { loader: 'sass-loader', options: { sourceMap: true } },
+					MiniCssExtractPlugin.loader,
+					{ loader: 'css-loader', options: { modules: true } },
+					{ loader: 'sass-loader' },
                 ],
             }
 		],
@@ -67,7 +67,7 @@ module.exports = {
 			],
 		}),
 		new MiniCssExtractPlugin({
-			filename: '[name].[hash].css',
+			filename: '[name].css',
 		}),
 	],
 	performance: {
