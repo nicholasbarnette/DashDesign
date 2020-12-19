@@ -1,8 +1,16 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import PreviewAppContainer from '../PreviewApp';
 
 // Components
-import { Text, Theme, Input, Label, Button } from '@nickbarnette/dashui';
+import {
+	Text,
+	Theme,
+	Input,
+	Label,
+	Button,
+	Dialog,
+	TextArea,
+} from '@nickbarnette/dashui';
 import { Chip } from '../../../components/Chip';
 
 // Styles
@@ -13,10 +21,30 @@ export interface PaletteContentProps {
 	updateTheme: (theme: Theme) => void;
 }
 
+const copyToClipboard = (text: string) => {
+	let dummy = document.createElement('textarea');
+	dummy.style.position = 'absolute';
+	dummy.style.left = '-9999px';
+	document.body.appendChild(dummy);
+	dummy.value = text;
+	dummy.select();
+	document.execCommand('copy');
+	document.body.removeChild(dummy);
+};
+
 export const PaletteContent: FC<PaletteContentProps> = (props) => {
 	const [fontSize, setFontSize] = useState(
 		`${props.theme.theme['font-size'].fontSizeBase}`,
 	);
+	const [dialogOpen, setDialogOpen] = useState(false);
+	const [themeText, setThemeText] = useState(
+		JSON.stringify(props.theme, null, 4),
+	);
+
+	useEffect(() => {
+		setThemeText(JSON.stringify(props.theme, null, 4));
+	}, [props.theme]);
+
 	return (
 		<div className={cn.stylesContainer}>
 			<div className={cn.colorContainer}>
@@ -193,6 +221,74 @@ export const PaletteContent: FC<PaletteContentProps> = (props) => {
 						</Button>
 					</div>
 				</div>
+				<Button
+					onPress={() => setDialogOpen(!dialogOpen)}
+					tooltip="View theme"
+				>
+					View Theme Object
+				</Button>
+				<Dialog
+					title="Theme Obejct"
+					showDialog={dialogOpen}
+					closeButton={{
+						text: 'Close',
+						props: {
+							tooltip: 'Close dialog',
+							onPress: () => setDialogOpen(false),
+						},
+					}}
+					width="768px"
+					style={{ height: '600px' }}
+				>
+					<div style={{ display: 'flex', flexDirection: 'column' }}>
+						<Text>
+							The JSON object below contains the data used to load
+							the custom theme that you have created. You may also
+							paste a previously created custom theme below to
+							load it.
+						</Text>
+						<div
+							style={{
+								marginBlockStart: '2rem',
+								display: 'flex',
+							}}
+						>
+							<Button
+								tooltip="Copy theme"
+								onPress={() => {
+									try {
+										copyToClipboard(themeText);
+									} catch (e) {}
+								}}
+							>
+								Copy Theme
+							</Button>
+							<Button
+								tooltip="Load theme"
+								style={{ marginInlineStart: '1rem' }}
+								onPress={() => {
+									try {
+										props.updateTheme(
+											JSON.parse(themeText),
+										);
+									} catch (e) {}
+								}}
+							>
+								Load Theme
+							</Button>
+						</div>
+						<TextArea
+							value={themeText}
+							style={{
+								maxWidth: '100%',
+								width: '100%',
+								flexGrow: 1,
+								marginBlockStart: '1rem',
+							}}
+							onChange={(val) => setThemeText(val)}
+						/>
+					</div>
+				</Dialog>
 			</div>
 			<div
 				style={{

@@ -29,9 +29,6 @@ import './App.scss';
 const history = createBrowserHistory();
 
 const App: FC = () => {
-	useEffect(() => {
-		console.log(DefaultLightTheme);
-	}, [DefaultLightTheme]);
 	return (
 		<Provider store={store.store}>
 			<PersistGate

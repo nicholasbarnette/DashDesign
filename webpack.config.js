@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const babelLoader = {
 	loader: 'babel-loader',
@@ -24,6 +25,8 @@ const babelLoader = {
 
 module.exports = {
 	entry: './src/App',
+	mode: 'production',
+	devtool: false,
 	output: {
 		path: path.join(__dirname, '/dist'),
 		filename: '[name].[hash].js',
@@ -45,6 +48,14 @@ module.exports = {
 					},
 				],
 			},
+			{
+				test: /\.s?css$/,
+				use: [
+					MiniCssExtractPlugin.loader,
+					{ loader: 'css-loader', options: { modules: true } },
+					{ loader: 'sass-loader' },
+				],
+			}
 		],
 	},
 	plugins: [
@@ -56,6 +67,10 @@ module.exports = {
 			patterns: [
 				{ from: './src/assets/img', to: './assets/img' },
 			],
+		}),
+		new MiniCssExtractPlugin({
+			filename: '[name].[hash].css',
+			chunkFilename: '[chunkhash].bundle.css',
 		}),
 	],
 	devServer: {
